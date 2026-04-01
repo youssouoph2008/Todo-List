@@ -21,6 +21,7 @@ todoContainer.id = "todo-container";
 
 loadProjects();
 displayProjects();
+displayTodos();
 
 function addTodo(title, description, dueDate, priority) {
     const newTodo = new Todo(title, description, dueDate, priority);
@@ -55,8 +56,8 @@ function loadProjects(){
 
         parsed.forEach(project =>{
             if (!project.todos)  project.todos = []
-            projects.todos.forEach(project =>{
-                dueDate = new Date(todo.dueDate);
+            project.todos.forEach(todo =>{
+                todo.dueDate = new Date(todo.dueDate);
             });
         });
 
@@ -85,6 +86,8 @@ projectBtn.addEventListener("click", () => {
     if (name) {
         projects.push({name, todos: [] });
         currentProject = projects.length - 1;
+        saveProject();
+        displayProjects();
         displayTodos();
     }
 })
@@ -92,26 +95,46 @@ projectBtn.addEventListener("click", () => {
 content.appendChild(projectBtn)
 
 function displayProjects() {
+    let existingProjectList = document.getElementById("project-list");
+    if (existingProjectList) {
+        existingProjectList.remove();
+    }
+    
     const projectList = document.createElement("div");
+    projectList.id = "project-list";
+
+    projectList.innerHTML = "";
 
     projects.forEach((project, index) => {
         const btn = document.createElement("button");
         btn.textContent = project.name;
 
+        if (index === currentProject) {
+            btn.style.backgroundColor = "lightblue"
+        }
+
         btn.addEventListener("click", () => {
             currentProject = index;
+            displayProjects();
             displayTodos();
         });
         
         projectList.appendChild(btn);
-        content.appendChild(projectList)
-    })
+        
+    });
+
+    content.appendChild(projectList)
+
 }
 
 function displayTodos() {
     todoContainer.innerHTML = '';
 
     const todos = projects[currentProject].todos;
+
+    if (todos.length === 0) {
+        todoContainer.textContent = "no hay tareas aun"
+    }
 
     todos.forEach((todo, index) => {
         const todoDiv = document.createElement('div');
