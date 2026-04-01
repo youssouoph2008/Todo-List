@@ -63,6 +63,8 @@ function loadProjects(){
 
         projects.length = 0;
         projects.push(...parsed)
+
+        if (currentProject >= projects.length) currentProject = 0
     }
 }
 
@@ -94,15 +96,17 @@ projectBtn.addEventListener("click", () => {
 
 content.appendChild(projectBtn)
 
-function displayProjects() {
-    let existingProjectList = document.getElementById("project-list");
-    if (existingProjectList) {
-        existingProjectList.remove();
-    }
-    
-    const projectList = document.createElement("div");
-    projectList.id = "project-list";
 
+function displayProjects() {
+    let projectList = document.getElementById("project-list");
+
+    if (!projectList) {
+        projectList = document.createElement("div");
+        projectList.id = "project-list";
+        content.appendChild(projectList);
+    }
+
+    // Limpiar botones anteriores
     projectList.innerHTML = "";
 
     projects.forEach((project, index) => {
@@ -110,7 +114,9 @@ function displayProjects() {
         btn.textContent = project.name;
 
         if (index === currentProject) {
-            btn.style.backgroundColor = "lightblue"
+            btn.style.backgroundColor = "lightblue";
+        } else {
+            btn.style.backgroundColor = ""; // resetea color de los demás
         }
 
         btn.addEventListener("click", () => {
@@ -118,13 +124,9 @@ function displayProjects() {
             displayProjects();
             displayTodos();
         });
-        
+
         projectList.appendChild(btn);
-        
     });
-
-    content.appendChild(projectList)
-
 }
 
 function displayTodos() {
@@ -133,7 +135,7 @@ function displayTodos() {
     const todos = projects[currentProject].todos;
 
     if (todos.length === 0) {
-        todoContainer.textContent = "no hay tareas aun"
+        todoContainer.textContent = "No hay tareas aún"
     }
 
     todos.forEach((todo, index) => {

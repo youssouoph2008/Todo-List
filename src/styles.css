@@ -1,0 +1,85 @@
+button {
+    padding: 8px 12px;
+    margin: 5px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #ddd;
+}
+
+#project-list button {
+    background-color: #eee;
+}
+
+#project-list button[style*="lightblue"] {
+    background-color: lightblue;
+    font-weight: bold;
+}
+
+.todo-item {
+    background-color: #fff;
+    padding: 15px;
+    margin: 10px 0;
+    width: 300px;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+
+.todo-item h3 {
+    margin: 0 0 5px 0;
+}
+
+.todo-item p {
+    margin: 5px 0;
+}
+
+form {
+    display: flex;
+    padding: 15px;
+    box-shadow: rgb(0, 81, 255)
+    
+}
+
+/* Centrar todo el contenido vertical y horizontalmente */
+body {
+    font-family: Arial, Helvetica, sans-serif;
+    background-color: #f9f9f9;
+    margin: 0;
+    padding: 0;
+    display: flex;               /* Activamos flexbox */
+    flex-direction: column;      /* Apilamos los elementos verticalmente */
+    align-items: center;         /* Centrado horizontal */
+    justify-content: flex-start; /* Empieza desde arriba, ajusta a center si quieres vertical también */
+    min-height: 100vh;           /* Ocupa toda la altura de la pantalla */
+}
+
+/* Contenedor principal de los todos */
+#todo-container {
+    display: flex;
+    flex-direction: line;
+    align-items: center;         /* Centrado horizontal */
+    width: 100%;
+    max-width: 400px;            /* No se haga demasiado ancho */
+    margin-top: 20px;
+}
+
+/* Contenedor de proyectos */
+#project-list {
+    display: flex;
+    gap: 10px;                   /* Espacio entre botones */
+    margin-bottom: 20px;
+}
+
+/* Cada todo */
+.todo-item {
+    background-color: #fff;
+    padding: 15px;
+    margin: 10px 0;
+    width: 100%;                 /* Ajusta al ancho del contenedor */
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    text-align: center;           /* Centrar texto dentro de cada todo */
+}
