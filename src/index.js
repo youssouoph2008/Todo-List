@@ -14,3 +14,4 @@ addBtn.addEventListener("click", () =>{
     console.log("El boton funciona")
 })
 content.appendChild(title);
+content.appendChild(addBtn)
