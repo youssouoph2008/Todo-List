@@ -5,6 +5,7 @@ class Todo {
         this.dueDate = dueDate;
         this.priority = priority;
     }
+
 }
 
 const miTodo = new Todo(
@@ -14,4 +15,4 @@ const miTodo = new Todo(
     "alta"
 )
 
-console.log(miTodo)
+console.log(miTodo) 

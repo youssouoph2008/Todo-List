@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<httml lang="en">
+<html lang="en">
     
     <meta charset="UTF-8">
     
@@ -8,12 +8,21 @@
     </head>
 
     <body>
-        <header>
-            
-        </header>
-        
-        <div id="content"></div>
+        <form id="todo-form">
+            <input type="text" id="title" placeholder="Título" required />
+            <input type="text" id="description" placeholder="Descripción" required />
+            <input type="date" id="dueDate" required />
+            <select id="priority">
+                <option value="baja">Baja</option>
+                <option value="media">Media</option>
+                <option value="alta">Alta</option>
+            </select>
+            <button type="submit">Agregar</button>
+        </form>
+
+        <div id= "todo-container"></div>
+        <script type=""moduele>"./src/index.js"</script>
     
     </body>
 
-</httml>
+</html>
